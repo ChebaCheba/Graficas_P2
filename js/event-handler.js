@@ -4,9 +4,13 @@ function toolsEvent(evt)
     // GEOMETRY
 
     if (evt == 1) {
-      var geometry = new THREE.BoxGeometry();        
+
+      // CUBE
+      var geometry = new THREE.BoxGeometry();   
+
       // MATERIAL
       var material = new THREE.MeshNormalMaterial();  
+
       // MESH (GEOMETRY + MATERIAL)
       mesh = new THREE.Mesh(geometry, material);
       mesh.name = "cubo";
@@ -21,8 +25,7 @@ function toolsEvent(evt)
       var planeMaterial = new THREE.MeshBasicMaterial({color: "grey", wireframe: true});
       var plane = new THREE.Mesh(planeGeometry, planeMaterial);
       plane.name = "piso";
-      plane.rotation.x = -0.5 * Math.PI;
-      //plane.rotation.y = -0.3 * Math.PI;
+      plane.rotation.x = -1.3;// * Math.PI;
 
       scene.add(plane);
       sceneReady = true;
@@ -42,8 +45,9 @@ function toolsEvent(evt)
       sceneReady = true;
     }
     
-    
     else if (evt == 7) {
+
+      // CYLINDER
       var geometry = new THREE.CylinderGeometry( 0.5, 0.5, 1,32);
       var material = new THREE.MeshNormalMaterial();
 
@@ -53,8 +57,12 @@ function toolsEvent(evt)
       scene.add(mesh);
       sceneReady = true;
     }
+
     else if (evt == 9) {
-      var geometry = new THREE.SphereGeometry(0.5, 50, 50);        
+
+      //SPHERE
+      var geometry = new THREE.SphereGeometry(0.5, 50, 50);
+
       // MATERIAL
       var material = new THREE.MeshNormalMaterial(); 
       mesh = new THREE.Mesh(geometry, material);
