@@ -39,6 +39,16 @@ function toolsEvent(evt)
       sceneReady = true;
     }
     
+    
+    else if (evt == 7) {
+      var geometry = new THREE.CylinderGeometry( 0.5, 0.5, 1,32);
+      var material = new THREE.MeshNormalMaterial();
+
+      mesh = new THREE.Mesh(geometry, material);
+
+      scene.add(mesh);
+      sceneReady = true;
+    }
     else if (evt == 9) {
       var geometry = new THREE.SphereGeometry(0.5, 50, 50);        
       // MATERIAL
