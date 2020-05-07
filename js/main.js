@@ -20,7 +20,8 @@ function main()
 
     // CAMERAS
     camera = new THREE.PerspectiveCamera(60., canvas.width / canvas.height, 0.01, 10000.);  // CAMERA
-    camera.position.set(0., 0., 5.);         
+    camera.position.set(0., 0., 5.);    
+    //camera.position.set(-3, 3, 10);       
   
     THREE.Axes
 
