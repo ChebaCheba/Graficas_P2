@@ -102,6 +102,22 @@ function toolsEvent(evt)
 
 
     }
+
+    else if (evt == 6) {
+
+      Swal.fire({
+        title: 'Select a camera',
+        html:
+          '<input type="radio" id="wireframe" name="camera" onclick="changeCamera(0)"><label for="male">Perspective</label>' +
+          '<input type="radio" id="texture" name="camera" onclick="changeCamera(1)"><label for="other">Ortographic</label>',
+        showCloseButton: true,
+        showCancelButton: false,
+        focusConfirm: false,
+        confirmButtonText:
+          '<i class="fa fa-thumbs-up"></i> Done',
+      });
+
+    }
     
     else if (evt == 7) {
 
@@ -263,4 +279,12 @@ function ChangeMaterial(value)
 function colorPaletteEvent() {
   color = document.getElementById("vertexColour").colorValue.value;
   ChangeMaterial(materialNum);
+}
+
+function changeCamera(value) {
+  if (value == 0){
+    camera = cameraP;   
+  } else if (value == 1){
+    camera = cameraO;  
+  }
 }
