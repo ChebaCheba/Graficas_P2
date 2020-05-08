@@ -59,7 +59,7 @@ function toolsEvent(evt)
       // PLANE
       var planeGeometry = new THREE.PlaneGeometry(10, 10, 10, 10);
       var plane = new THREE.Mesh(planeGeometry, material);
-      mesh.name = "piso"+objId;
+      plane.name = "piso"+objId;
       plane.rotation.x = -1.3;// * Math.PI;
 
       scene.add(plane);
