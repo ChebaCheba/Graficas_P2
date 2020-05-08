@@ -6,11 +6,12 @@ var camera;
 var light, directLight;
 var mesh;
 var sceneReady = false;
-var material;
+var material, materialNum;
 var controls;
 var raycaster = new THREE.Raycaster();
 var mouse = new THREE.Vector2();
 var selectedObj;
+var color;
 
 function main()
 {
@@ -40,6 +41,8 @@ function main()
     scene.add(directLight);
 
     material = new THREE.MeshNormalMaterial(); 
+    materialNum = 1;
+    color = 0x6134eb;
 
     // EVENTS
     initEventHandler();
