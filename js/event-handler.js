@@ -1,3 +1,12 @@
+function inputRadioSquareEventListener(evt){
+  if(document.getElementById('animation').checked){
+    controls.enabled = true;
+  }else{
+    controls.enabled = false;
+  }
+  
+}
+
 function toolsEvent(evt) 
 {
 	// MODEL
@@ -85,5 +94,6 @@ function toolsEvent(evt)
 
 function initEventHandler(evt)
 {
-	
+  document.getElementById("animation").addEventListener("input", inputRadioSquareEventListener, false);
+  document.getElementById("edition").addEventListener("input", inputRadioSquareEventListener, false);
 }

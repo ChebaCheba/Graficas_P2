@@ -6,6 +6,7 @@ var camera;
 var light;
 var mesh;
 var sceneReady = false;
+var controls;
 
 function main()
 {
@@ -24,7 +25,9 @@ function main()
     //camera.position.set(-3, 3, 10);       
   
     THREE.Axes
-
+    
+    controls = new THREE.OrbitControls(camera, renderer.domElement);
+    
     // SCENE
     scene = new THREE.Scene();                                 
     scene.add(camera);
