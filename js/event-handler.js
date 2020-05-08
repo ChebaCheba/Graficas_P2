@@ -115,6 +115,31 @@ function toolsEvent(evt)
       scene.add(mesh);
       sceneReady = true;
     }
+    else if (evt == 8) {
+      var bigSphereGeometry = new THREE.SphereGeometry(1., 10, 10);
+    var bigSphere = new THREE.Mesh(bigSphereGeometry, material);
+    bigSphere.name = "bigS";
+    // LITTLE SPHERE
+    var littleSphereGeometry = new THREE.SphereGeometry(1., 10, 10);
+    var littleSphere = new THREE.Mesh(littleSphereGeometry, material);
+    littleSphere.name = "lilS";
+
+    // MODEL TRANSFORM
+    bigSphere.position.set(0., 0., 0.);
+    // LITTLE SPHERE
+    littleSphere.position.set(0., 1.5, 0.);
+    littleSphere.scale.set(0.5, 0.5, 0.5);
+
+    // GROUP
+    snowMan= new THREE.Group();
+    snowMan.add(bigSphere);
+    snowMan.add(littleSphere);
+    snowMan.name = "snowman";
+    snowMans.push(snowMan);
+
+    scene.add(snowMan);
+    sceneReady = true;
+    }
 
     else if (evt == 9) {
 
@@ -160,6 +185,12 @@ function onMouseMove( event ) {
 	var intersects = raycaster.intersectObjects( scene.children );
 
   if (intersects.length > 0 && intersects[0].object.name != "piso") {
+
+    for (var i = 0; i < snowMans.length; i++) { 
+      if (intersects[ 0 ].object.parent === snowMans[ i ]) {
+        console.log("aaaah");
+    }
+  }
     
     console.log(intersects[0].object.name);
     selectedObj = intersects[0].object;

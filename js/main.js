@@ -16,6 +16,8 @@ var animationObjects;
 var animationMode = false;
 var start = false;
 var objId;
+var snowMan;
+var snowMans;
 
 function main()
 {
@@ -26,6 +28,7 @@ function main()
     renderer.setClearColor("black");
     
     animationObjects = [];
+    snowMans = [];
     objId = 0;
 
     // LIGHTS
@@ -35,11 +38,12 @@ function main()
 
     // CAMERAS
     camera = new THREE.PerspectiveCamera(60., canvas.width / canvas.height, 0.01, 10000.);  // CAMERA
-    camera.position.set(0., 0., 5.);        
+    camera.position.set(0., 0., 5.);     
   
     THREE.Axes
     
     controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.enabled = false;
     
     // SCENE
     scene = new THREE.Scene();                                 
