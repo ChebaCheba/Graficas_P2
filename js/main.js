@@ -8,6 +8,9 @@ var mesh;
 var sceneReady = false;
 var material;
 var materialsArray;
+var controls;
+var raycaster = new THREE.Raycaster();
+var mouse = new THREE.Vector2();
 
 function main()
 {
@@ -27,7 +30,9 @@ function main()
     camera.position.set(0., 0., 5.);        
   
     THREE.Axes
-
+    
+    controls = new THREE.OrbitControls(camera, renderer.domElement);
+    
     // SCENE
     scene = new THREE.Scene();                                 
     scene.add(camera);
@@ -49,8 +54,10 @@ function renderLoop() {
     if(sceneReady)
     {
          renderer.render(scene, camera);
-         mesh.rotation.x = mesh.rotation.x + 0.01;
-         mesh.rotation.y = mesh.rotation.y + 0.01;
+         if (mesh!=null){
+            mesh.rotation.x = mesh.rotation.x + 0.01;
+            mesh.rotation.y = mesh.rotation.y + 0.01;
+         }
     }
     requestAnimationFrame(renderLoop);
 }
