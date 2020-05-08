@@ -12,8 +12,8 @@
 <body onload = main();>
   <h1>My Paint Scene 3D</h1>
   <div>
-  <input type="radio" name="group1" value="animation" id="animation" checked> Animation <br>
-  <input type="radio" name="group1" value="edition" id="edition"> Edition <br>
+  <input type="radio" name="group1" value="animation" id="animation"> Animation <br>
+  <input type="radio" name="group1" value="edition" id="edition" checked> Edition <br>
   </div>
 	<table>
       <tr>
@@ -48,7 +48,9 @@
       </tr>
     </table>
     <div style="float: center;">
-      <div id="transform" style="display: none">
+      <div id="transform" style="display: block">
+      <input type="checkbox" id="animated" name="animated" value="Animated" checked>
+      <label for="animated"> Animate figure</label><br>
       <label for="translation">Translation</label><br>
       <input type="text" id="tx" name="text-translate-x"><br>
       <input type="text" id="ty" name="text-translate-y"><br>
@@ -61,7 +63,7 @@
       <button type="button" id="sbutton">Scale</button><br>
       <label for="rotation">Rotation</label><br>
       <input type="range" min="0" max="2" value="0" step="0.1" class="slider" id="degrees"><br>
-      <label for="degrees">0.0</label><br>
+      <label for="degrees" id="ldeg">0.0</label><br>
       <button type="button" id="rbutton">Rotate</button><br>
       </div>
     

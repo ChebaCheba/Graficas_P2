@@ -4,10 +4,12 @@ function inputRadioSquareEventListener(evt){
     //ANIMATION
     controls.enabled = true;
     document.getElementById("transform").style.display = "none";
+    animationMode = true;
   }else{
     //EDITION
     controls.enabled = false;
     document.getElementById("transform").style.display = "block";
+    animationMode = false;
   }
   
 }
@@ -17,6 +19,10 @@ function toolsEvent(evt)
 	// MODEL
     // GEOMETRY
 
+    if (animationMode) {
+      return;
+    }
+
     if (evt == 1) {
 
       // CUBE
@@ -24,9 +30,10 @@ function toolsEvent(evt)
 
       // MESH (GEOMETRY + MATERIAL)
       mesh = new THREE.Mesh(geometry, material);
-      mesh.name = "cubo";
+      mesh.name = objId;
       scene.add(mesh);
       sceneReady = true;
+      
     } 
     
     else if (evt == 3) {
@@ -34,7 +41,7 @@ function toolsEvent(evt)
       // PLANE
       var planeGeometry = new THREE.PlaneGeometry(10, 10, 10, 10);
       var plane = new THREE.Mesh(planeGeometry, material);
-      plane.name = "piso";
+      mesh.name = objId;
       plane.rotation.x = -1.3;// * Math.PI;
 
       scene.add(plane);
@@ -68,10 +75,12 @@ function toolsEvent(evt)
       var geometry = new THREE.ConeGeometry(1, 2, 50);
        
       mesh = new THREE.Mesh(geometry, material);
-      mesh.name = "cono";
+      mesh.name = objId;
 
       scene.add(mesh); 
       sceneReady = true;
+
+
     }
     
     else if (evt == 7) {
@@ -93,7 +102,7 @@ function toolsEvent(evt)
       var geometry = new THREE.SphereGeometry(0.5, 50, 50);
 
       mesh = new THREE.Mesh(geometry, material);
-      mesh.name = "sphere";
+      mesh.name = objId;
       scene.add(mesh); 
       sceneReady = true;
     }
@@ -104,11 +113,18 @@ function toolsEvent(evt)
       var geometry = new THREE.ConeGeometry(1.5, 2, 3);     
 
       mesh = new THREE.Mesh(geometry, material);
-      mesh.name = "pyramide";
+      mesh.name = objId;
 
       scene.add(mesh); 
       sceneReady = true;
     }
+
+    var animate = document.getElementById("animated").checked;
+    if (animate) {
+      animationObjects.push(mesh);
+    }
+
+    objId++;
 }
 
 function onMouseMove( event ) {
@@ -152,6 +168,17 @@ function scaleObject(event) {
   }
 }
 
+function updateLabel(event) {
+  document.getElementById("ldeg").innerHTML = document.getElementById("degrees").value;
+}
+
+function rotateObject(event) {
+  if (selectedObj != null) {
+    var deg = document.getElementById("degrees").value
+    selectedObj.rotation.set(0., 0., Math.PI*deg);
+  }
+}
+
 
 function initEventHandler(evt)
 {
@@ -159,7 +186,8 @@ function initEventHandler(evt)
   document.getElementById("edition").addEventListener("input", inputRadioSquareEventListener, false);
   document.getElementById("tbutton").addEventListener("click", translateObject);
   document.getElementById("sbutton").addEventListener("click", scaleObject);
-  //document.getElementById("rotation").addEventListener("input", rotateObject, false);
+  document.getElementById("rbutton").addEventListener("click", rotateObject);
+  document.getElementById("degrees").addEventListener("input", updateLabel, false);
   document.addEventListener('click', onMouseMove, false);
 }
 

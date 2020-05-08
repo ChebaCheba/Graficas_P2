@@ -12,6 +12,9 @@ var raycaster = new THREE.Raycaster();
 var mouse = new THREE.Vector2();
 var selectedObj;
 var color;
+var animationObjects;
+var animationMode = false;
+var objId;
 
 function main()
 {
@@ -19,7 +22,10 @@ function main()
     canvas = document.getElementById("canvas");
     renderer = new THREE.WebGLRenderer({canvas: canvas});
     renderer.setSize(canvas.width, canvas.height);
-    renderer.setClearColor("black");                    
+    renderer.setClearColor("black");
+    
+    animationObjects = [];
+    objId = 0;
 
     // LIGHTS
     light = new THREE.AmbientLight();    
@@ -55,9 +61,13 @@ function renderLoop() {
     if(sceneReady)
     {
          renderer.render(scene, camera);
-         if (mesh!=null){
-            mesh.rotation.x = mesh.rotation.x + 0.01;
-            mesh.rotation.y = mesh.rotation.y + 0.01;
+         if (mesh!=null && animationMode){
+             for(var i=0;i<animationObjects.length;i++){
+                 animationObjects[i].rotation.x = animationObjects[i].rotation.x + 0.01;
+                 animationObjects[i].rotation.y = animationObjects[i].rotation.y + 0.01;
+             }
+            //mesh.rotation.x = mesh.rotation.x + 0.01;
+            //mesh.rotation.y = mesh.rotation.y + 0.01;
          }
     }
     requestAnimationFrame(renderLoop);
