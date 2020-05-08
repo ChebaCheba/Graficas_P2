@@ -7,6 +7,8 @@ var light;
 var mesh;
 var sceneReady = false;
 var controls;
+var raycaster = new THREE.Raycaster();
+var mouse = new THREE.Vector2();
 
 function main()
 {
@@ -20,7 +22,7 @@ function main()
     light = new THREE.AmbientLight();    
 
     // CAMERAS
-    camera = new THREE.PerspectiveCamera(60., canvas.width / canvas.height, 0.01, 10000.);  // CAMERA
+    camera = new THREE.PerspectiveCamera(60., canvas.width / canvas.height, 1, 1000);  // CAMERA
     camera.position.set(0., 0., 5.);    
     //camera.position.set(-3, 3, 10);       
   
@@ -44,8 +46,10 @@ function renderLoop() {
     if(sceneReady)
     {
          renderer.render(scene, camera);
-         mesh.rotation.x = mesh.rotation.x + 0.01;
-         mesh.rotation.y = mesh.rotation.y + 0.01;
+         if (mesh!=null){
+            mesh.rotation.x = mesh.rotation.x + 0.01;
+            mesh.rotation.y = mesh.rotation.y + 0.01;
+         }
     }
     requestAnimationFrame(renderLoop);
 }

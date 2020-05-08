@@ -22,6 +22,7 @@ function toolsEvent(evt)
 
       // MESH (GEOMETRY + MATERIAL)
       mesh = new THREE.Mesh(geometry, material);
+      mesh.name = "cubo";
       scene.add(mesh);
       sceneReady = true;
     } 
@@ -32,8 +33,8 @@ function toolsEvent(evt)
       var planeGeometry = new THREE.PlaneGeometry(10, 10, 10, 10);
       var planeMaterial = new THREE.MeshBasicMaterial({color: "grey", wireframe: true});
       var plane = new THREE.Mesh(planeGeometry, planeMaterial);
+      plane.name = "piso";
       plane.rotation.x = -1.3;// * Math.PI;
-      //plane.rotation.y = -0.3 * Math.PI;
 
       scene.add(plane);
       sceneReady = true;
@@ -47,6 +48,7 @@ function toolsEvent(evt)
       // MATERIAL
       var material = new THREE.MeshNormalMaterial(); 
       mesh = new THREE.Mesh(geometry, material);
+      mesh.name = "cono";
 
       scene.add(mesh); 
       sceneReady = true;
@@ -59,6 +61,7 @@ function toolsEvent(evt)
       var material = new THREE.MeshNormalMaterial();
 
       mesh = new THREE.Mesh(geometry, material);
+      mesh.name = "cilindro";
 
       scene.add(mesh);
       sceneReady = true;
@@ -72,7 +75,7 @@ function toolsEvent(evt)
       // MATERIAL
       var material = new THREE.MeshNormalMaterial(); 
       mesh = new THREE.Mesh(geometry, material);
-
+      mesh.name = "sphere";
       scene.add(mesh); 
       sceneReady = true;
     }
@@ -85,10 +88,31 @@ function toolsEvent(evt)
       // MATERIAL
       var material = new THREE.MeshNormalMaterial(); 
       mesh = new THREE.Mesh(geometry, material);
+      mesh.name = "pyramide";
 
       scene.add(mesh); 
       sceneReady = true;
     }
+}
+
+function onMouseMove( event ) {
+
+	//mouse.x = ( event.clientX / canvas.width ) * 2 - 1;
+  //mouse.y = - ( event.clientY / canvas.height ) * 2 + 1;
+  mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+	mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+  
+  raycaster.setFromCamera( mouse, camera );
+
+	// calculate objects intersecting the picking ray
+	var intersects = raycaster.intersectObjects( scene.children );
+
+  if (intersects.length > 0 && intersects[0].object.name != "piso") {
+    
+    console.log(intersects[0].object.name);
+    
+  }
+
 }
 
 
@@ -96,4 +120,5 @@ function initEventHandler(evt)
 {
   document.getElementById("animation").addEventListener("input", inputRadioSquareEventListener, false);
   document.getElementById("edition").addEventListener("input", inputRadioSquareEventListener, false);
+	  document.addEventListener('click', onMouseMove, false);
 }
