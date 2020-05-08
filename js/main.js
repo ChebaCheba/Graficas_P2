@@ -3,9 +3,10 @@ var canvas;
 var renderer;
 var scene;
 var camera;
-var light;
+var light, directLight;
 var mesh;
 var sceneReady = false;
+var material;
 var controls;
 var raycaster = new THREE.Raycaster();
 var mouse = new THREE.Vector2();
@@ -20,11 +21,12 @@ function main()
 
     // LIGHTS
     light = new THREE.AmbientLight();    
+    directLight = new THREE.DirectionalLight( 0xffffff );
+    directLight.position.set( 0, 1, 1 ).normalize();
 
     // CAMERAS
-    camera = new THREE.PerspectiveCamera(60., canvas.width / canvas.height, 1, 1000);  // CAMERA
-    camera.position.set(0., 0., 5.);    
-    //camera.position.set(-3, 3, 10);       
+    camera = new THREE.PerspectiveCamera(60., canvas.width / canvas.height, 0.01, 10000.);  // CAMERA
+    camera.position.set(0., 0., 5.);        
   
     THREE.Axes
     
@@ -34,6 +36,9 @@ function main()
     scene = new THREE.Scene();                                 
     scene.add(camera);
     scene.add(light);
+    scene.add(directLight);
+
+    material = new THREE.MeshNormalMaterial(); 
 
     // EVENTS
     initEventHandler();
