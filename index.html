@@ -39,7 +39,11 @@
         <td><img id="img-circle" class="action" src="imgs/sphere.png" alt="" onclick="toolsEvent('9');"/></td>
       </tr>
       <tr>
-        <td><input id="color-palette" class="action" src="imgs/pallete.png" type="color" name="name" value="#000000" onclick="toolsEventHandler('10');" onchange="colorPaletteEvent();"></td>
+        <td>
+          <form action="" id="vertexColour">
+            <input type="color" id="colorValue" src="imgs/pallete.png" value="#6134eb" onchange="colorPaletteEvent();">
+          </form>
+        </td>
         <td><img id="img-pyramid" class="action" src="imgs/pyramid.png" alt="" onclick="toolsEvent('11');"/></td>
       </tr>
     </table>

@@ -28,8 +28,7 @@ function toolsEvent(evt)
 
       // PLANE
       var planeGeometry = new THREE.PlaneGeometry(10, 10, 10, 10);
-      var planeMaterial = new THREE.MeshBasicMaterial({color: "grey", wireframe: true});
-      var plane = new THREE.Mesh(planeGeometry, planeMaterial);
+      var plane = new THREE.Mesh(planeGeometry, material);
       plane.name = "piso";
       plane.rotation.x = -1.3;// * Math.PI;
 
@@ -138,12 +137,18 @@ function initEventHandler(evt)
 function ChangeMaterial(value)
 {
   if (value == 0){
-    material = new THREE.MeshBasicMaterial({color: "grey", wireframe: true});
+    material = new THREE.MeshBasicMaterial({color: color, wireframe: true});
   } else if (value == 1){
     material = new THREE.MeshNormalMaterial(); 
   } else if (value == 2){
-    material = new THREE.MeshLambertMaterial({color: "green"}); 
+    material = new THREE.MeshLambertMaterial({color: color}); 
   } else if (value == 3){
-    material = new THREE.MeshPhongMaterial({color: "red", shininess: 100}); 
+    material = new THREE.MeshPhongMaterial({color: color, shininess: 100}); 
   }
+  materialNum = value;
+}
+
+function colorPaletteEvent() {
+  color = document.getElementById("vertexColour").colorValue.value;
+  ChangeMaterial(materialNum);
 }
