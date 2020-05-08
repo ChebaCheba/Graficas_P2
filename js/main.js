@@ -14,6 +14,7 @@ var selectedObj;
 var color;
 var animationObjects;
 var animationMode = false;
+var start = false;
 var objId;
 
 function main()
@@ -61,7 +62,7 @@ function renderLoop() {
     if(sceneReady)
     {
          renderer.render(scene, camera);
-         if (mesh!=null && animationMode){
+         if (mesh!=null && animationMode && start){
              for(var i=0;i<animationObjects.length;i++){
                  animationObjects[i].rotation.x = animationObjects[i].rotation.x + 0.01;
                  animationObjects[i].rotation.y = animationObjects[i].rotation.y + 0.01;
