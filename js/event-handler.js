@@ -92,7 +92,7 @@ function toolsEvent(evt)
       //var material = material;
 
       mesh = new THREE.Mesh(geometry, material);
-      mesh.name = "cilindro";
+      mesh.name = objId;
 
       scene.add(mesh);
       sceneReady = true;
@@ -150,6 +150,32 @@ function onMouseMove( event ) {
 
 }
 
+function animateObject(event) {
+  if (selectedObj != null) {
+    var animate = document.getElementById("animated").checked;
+
+    if (animate) {
+      var found = false;
+      for(var i = 0; i<animationObjects.length; i++) {
+        if( animationObjects[i].name == selectedObj.name){
+          found = true;
+          break;
+        }
+      }
+      if (!found) {
+        animationObjects.push(selectedObj);
+      }
+    } else {
+      for(var i = 0; i<animationObjects.length; i++) {
+        if( animationObjects[i].name == selectedObj.name){
+          animationObjects.splice(i,1);
+          break;
+        }
+      }
+    }
+  }
+}
+
 function translateObject(event) {
   if (selectedObj != null) {
     var x = document.getElementById("tx").value;
@@ -190,6 +216,7 @@ function initEventHandler(evt)
   document.getElementById("sbutton").addEventListener("click", scaleObject);
   document.getElementById("rbutton").addEventListener("click", rotateObject);
   document.getElementById("degrees").addEventListener("input", updateLabel, false);
+  document.getElementById("animated").addEventListener("input", animateObject, false);
   document.addEventListener('click', onMouseMove, false);
 }
 
