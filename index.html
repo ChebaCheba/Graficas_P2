@@ -45,17 +45,20 @@
     </table>
     <div style="float: center;">
       <div id="transform" style="display: none">
-      <input type="radio" name="group2" value="translation" id="translation"> Translate <br>
+      <label for="translation">Translation</label><br>
       <input type="text" id="tx" name="text-translate-x"><br>
       <input type="text" id="ty" name="text-translate-y"><br>
       <input type="text" id="tz" name="text-translate-z"><br>
-      <input type="radio" name="group2" value="scalation" id="scalation"> Scale <br>
+      <button type="button" id="tbutton">Translate</button><br>
+      <label for="scalation">Scalation</label><br>
       <input type="text" id="sx" name="text-scale-x"><br>
       <input type="text" id="sy" name="text-scale-y"><br>
       <input type="text" id="sz" name="text-scale-z"><br>
-      <input type="radio" name="group2" value="rotation" id="rotation"> Rotate <br>
+      <button type="button" id="sbutton">Scale</button><br>
+      <label for="rotation">Rotation</label><br>
       <input type="range" min="0" max="2" value="0" step="0.1" class="slider" id="degrees"><br>
-      <label for="degrees">0.0</label>
+      <label for="degrees">0.0</label><br>
+      <button type="button" id="rbutton">Rotate</button><br>
       </div>
     
 </body>

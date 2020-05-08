@@ -10,6 +10,7 @@ var material;
 var controls;
 var raycaster = new THREE.Raycaster();
 var mouse = new THREE.Vector2();
+var selectedObj;
 
 function main()
 {

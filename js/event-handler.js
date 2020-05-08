@@ -46,7 +46,7 @@ function toolsEvent(evt)
 
       Swal.fire({
         title: 'Select a material',
-        imageUrl: '../imgs/materials.png',
+        imageUrl: './imgs/materials.png',
         imageHeight: 123,
         imageWidth: 600,
         html:
@@ -127,9 +127,30 @@ function onMouseMove( event ) {
   if (intersects.length > 0 && intersects[0].object.name != "piso") {
     
     console.log(intersects[0].object.name);
+    selectedObj = intersects[0].object;
     
   }
 
+}
+
+function translateObject(event) {
+  if (selectedObj != null) {
+    var x = document.getElementById("tx").value;
+    var y = document.getElementById("ty").value;
+    var z = document.getElementById("tz").value;
+
+    selectedObj.position.set(x, y , z);
+  }
+}
+
+function scaleObject(event) {
+  if (selectedObj != null) {
+    var x = document.getElementById("sx").value;
+    var y = document.getElementById("sy").value;
+    var z = document.getElementById("sz").value;
+
+    selectedObj.scale.set(x, y, z);
+  }
 }
 
 
@@ -137,9 +158,9 @@ function initEventHandler(evt)
 {
   document.getElementById("animation").addEventListener("input", inputRadioSquareEventListener, false);
   document.getElementById("edition").addEventListener("input", inputRadioSquareEventListener, false);
-  document.getElementById("translation").addEventListener("input", translateObject, false);
-  document.getElementById("scalation").addEventListener("input", scalateObject, false);
-  document.getElementById("rotation").addEventListener("input", rotateObject, false);
+  document.getElementById("tbutton").addEventListener("click", translateObject);
+  document.getElementById("sbutton").addEventListener("click", scaleObject);
+  //document.getElementById("rotation").addEventListener("input", rotateObject, false);
   document.addEventListener('click', onMouseMove, false);
 }
 
