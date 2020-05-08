@@ -1,8 +1,13 @@
 function inputRadioSquareEventListener(evt){
+  
   if(document.getElementById('animation').checked){
+    //ANIMATION
     controls.enabled = true;
+    document.getElementById("transform").style.display = "none";
   }else{
+    //EDITION
     controls.enabled = false;
+    document.getElementById("transform").style.display = "block";
   }
   
 }
@@ -120,5 +125,8 @@ function initEventHandler(evt)
 {
   document.getElementById("animation").addEventListener("input", inputRadioSquareEventListener, false);
   document.getElementById("edition").addEventListener("input", inputRadioSquareEventListener, false);
-	  document.addEventListener('click', onMouseMove, false);
+  document.getElementById("translation").addEventListener("input", translateObject, false);
+  document.getElementById("scalation").addEventListener("input", scalateObject, false);
+  document.getElementById("rotation").addEventListener("input", rotateObject, false);
+  document.addEventListener('click', onMouseMove, false);
 }
