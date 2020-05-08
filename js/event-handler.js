@@ -49,10 +49,12 @@ function toolsEvent(evt)
         imageHeight: 123,
         imageWidth: 600,
         html:
-          '<input type="radio" id="wireframe" name="material" value="wireframe" onclick="ChangeMaterial(0)"><label for="male">Wireframe</label>' +
-          '<input type="radio" id="basic" name="material" value="basic"s onclick="ChangeMaterial(1)"><label for="male">Basic</label>' +
-          '<input type="radio" id="lambert" name="material" value="lambert" onclick="ChangeMaterial(2)"><label for="female">Lambert</label>' +
-          '<input type="radio" id="phong" name="material" value="phong" onclick="ChangeMaterial(3)"><label for="other">Phong</label>',
+          '<input type="radio" id="wireframe" name="material" onclick="ChangeMaterial(0)"><label for="male">Wireframe</label>' +
+          '<input type="radio" id="normal" name="material" onclick="ChangeMaterial(1)"><label for="male">Normal</label>' +
+          '<input type="radio" id="basic" name="material" onclick="ChangeMaterial(2)"><label for="male">Basic</label>' +
+          '<input type="radio" id="lambert" name="material" onclick="ChangeMaterial(3)"><label for="female">Lambert</label>' +
+          '<input type="radio" id="phong" name="material" onclick="ChangeMaterial(4)"><label for="other">Phong</label>' +
+          '<input type="radio" id="texture" name="material" onclick="ChangeMaterial(5)"><label for="other">Image Texture</label>',
         showCloseButton: true,
         showCancelButton: false,
         focusConfirm: false,
@@ -170,9 +172,14 @@ function ChangeMaterial(value)
   } else if (value == 1){
     material = new THREE.MeshNormalMaterial(); 
   } else if (value == 2){
-    material = new THREE.MeshLambertMaterial({color: color}); 
+    material = new THREE.MeshBasicMaterial({color: color}); 
   } else if (value == 3){
+    material = new THREE.MeshLambertMaterial({color: color}); 
+  } else if (value == 4){
     material = new THREE.MeshPhongMaterial({color: color, shininess: 100}); 
+  } else if (value == 5){
+    var loader = new THREE.TextureLoader();
+    material = new THREE.MeshPhongMaterial({map: loader.load('../imgs/texture.jpg'), shininess: 100}); 
   }
   materialNum = value;
 }
