@@ -14,6 +14,20 @@ function inputRadioSquareEventListener(evt){
   
 }
 
+function startAnimation(event){
+  start = true;
+}
+
+function stopAnimation(event){
+  start = false;
+}
+
+function resetAnimation(event) {
+  for(var i = 0; i < animationObjects.length; i++){
+    animationObjects[i].rotation.set(0., 0., 0.);
+  }
+}
+
 function toolsEvent(evt) 
 {
 	// MODEL
@@ -30,18 +44,22 @@ function toolsEvent(evt)
 
       // MESH (GEOMETRY + MATERIAL)
       mesh = new THREE.Mesh(geometry, material);
-      mesh.name = objId;
+      mesh.name = "cube"+objId;
       scene.add(mesh);
       sceneReady = true;
       
-    } 
+    } else if (evt == 2) {
+      if (selectedObj != null) {
+        scene.remove(selectedObj);
+      }
+    }
     
     else if (evt == 3) {
 
       // PLANE
       var planeGeometry = new THREE.PlaneGeometry(10, 10, 10, 10);
       var plane = new THREE.Mesh(planeGeometry, material);
-      mesh.name = objId;
+      mesh.name = "piso"+objId;
       plane.rotation.x = -1.3;// * Math.PI;
 
       scene.add(plane);
@@ -77,7 +95,7 @@ function toolsEvent(evt)
       var geometry = new THREE.ConeGeometry(1, 2, 50);
        
       mesh = new THREE.Mesh(geometry, material);
-      mesh.name = objId;
+      mesh.name = "cono"+objId;
 
       scene.add(mesh); 
       sceneReady = true;
@@ -92,7 +110,7 @@ function toolsEvent(evt)
       //var material = material;
 
       mesh = new THREE.Mesh(geometry, material);
-      mesh.name = "cilindro";
+      mesh.name = "cilindro"+objId;
 
       scene.add(mesh);
       sceneReady = true;
@@ -104,7 +122,7 @@ function toolsEvent(evt)
       var geometry = new THREE.SphereGeometry(0.5, 50, 50);
 
       mesh = new THREE.Mesh(geometry, material);
-      mesh.name = objId;
+      mesh.name = "sphere"+objId;
       scene.add(mesh); 
       sceneReady = true;
     }
@@ -115,7 +133,7 @@ function toolsEvent(evt)
       var geometry = new THREE.ConeGeometry(1.5, 2, 3);     
 
       mesh = new THREE.Mesh(geometry, material);
-      mesh.name = objId;
+      mesh.name = "pyramid"+objId;
 
       scene.add(mesh); 
       sceneReady = true;
@@ -148,6 +166,32 @@ function onMouseMove( event ) {
     
   }
 
+}
+
+function animateObject(event) {
+  if (selectedObj != null) {
+    var animate = document.getElementById("animated").checked;
+
+    if (animate) {
+      var found = false;
+      for(var i = 0; i<animationObjects.length; i++) {
+        if( animationObjects[i].name == selectedObj.name){
+          found = true;
+          break;
+        }
+      }
+      if (!found) {
+        animationObjects.push(selectedObj);
+      }
+    } else {
+      for(var i = 0; i<animationObjects.length; i++) {
+        if( animationObjects[i].name == selectedObj.name){
+          animationObjects.splice(i,1);
+          break;
+        }
+      }
+    }
+  }
 }
 
 function translateObject(event) {
@@ -189,7 +233,11 @@ function initEventHandler(evt)
   document.getElementById("tbutton").addEventListener("click", translateObject);
   document.getElementById("sbutton").addEventListener("click", scaleObject);
   document.getElementById("rbutton").addEventListener("click", rotateObject);
+  document.getElementById("start").addEventListener("click", startAnimation);
+  document.getElementById("stop").addEventListener("click", stopAnimation);
+  document.getElementById("reset").addEventListener("click", resetAnimation);
   document.getElementById("degrees").addEventListener("input", updateLabel, false);
+  document.getElementById("animated").addEventListener("input", animateObject, false);
   document.addEventListener('click', onMouseMove, false);
 }
 

@@ -13,6 +13,11 @@
   <h1>My Paint Scene 3D</h1>
   <div>
   <input type="radio" name="group1" value="animation" id="animation"> Animation <br>
+  <div>
+    <button type="button" id="start">Start</button>
+    <button type="button" id="stop">Stop</button>
+    <button type="button" id="reset">Reset</button><br>
+  </div>
   <input type="radio" name="group1" value="edition" id="edition" checked> Edition <br>
   </div>
 	<table>
@@ -23,7 +28,7 @@
         <td rowspan="8"><canvas id="canvas" width="500" height="500" onclick="onMouseMove(event)"></canvas></td>
       </tr>
       <tr>
-        <td><img id="img-eraser" class="action" src="imgs/eraser.png" alt="" onclick="toolsEventHandler('2');"></td>
+        <td><img id="img-eraser" class="action" src="imgs/eraser.png" alt="" onclick="toolsEvent('2');"></td>
         <td><img id="img-floor" class="action" src="imgs/floor.png" alt="" onclick="toolsEvent('3');"/></td>
       </tr>
       <tr>
