@@ -59,7 +59,7 @@ function toolsEvent(evt)
       // PLANE
       var planeGeometry = new THREE.PlaneGeometry(10, 10, 10, 10);
       var plane = new THREE.Mesh(planeGeometry, material);
-      plane.name = "piso"+objId;
+      plane.name = "piso";
       plane.rotation.x = -1.3;// * Math.PI;
 
       scene.add(plane);
@@ -189,25 +189,15 @@ function toolsEvent(evt)
 }
 
 function onMouseMove( event ) {
-
-	//mouse.x = ( event.clientX / canvas.width ) * 2 - 1;
-  //mouse.y = - ( event.clientY / canvas.height ) * 2 + 1;
   mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
 	mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
-  
   raycaster.setFromCamera( mouse, camera );
 
 	// calculate objects intersecting the picking ray
 	var intersects = raycaster.intersectObjects( scene.children );
 
-  if (intersects.length > 0 && intersects[0].object.name != "piso") {
-
-    for (var i = 0; i < snowMans.length; i++) { 
-      if (intersects[ 0 ].object.parent === snowMans[ i ]) {
-        console.log("aaaah");
-    }
-  }
-    
+  if (intersects.length > 0) {
+    document.getElementById("shape-name").innerHTML = intersects[0].object.name;
     console.log(intersects[0].object.name);
     selectedObj = intersects[0].object;
     
