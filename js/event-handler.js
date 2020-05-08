@@ -17,9 +17,6 @@ function toolsEvent(evt)
       // CUBE
       var geometry = new THREE.BoxGeometry();   
 
-      // MATERIAL
-      //var material = material;  
-
       // MESH (GEOMETRY + MATERIAL)
       mesh = new THREE.Mesh(geometry, material);
       mesh.name = "cubo";
@@ -65,9 +62,6 @@ function toolsEvent(evt)
 
       // CONE
       var geometry = new THREE.ConeGeometry(1, 2, 50);
-
-      // MATERIAL
-      //var material = material; 
        
       mesh = new THREE.Mesh(geometry, material);
       mesh.name = "cono";
@@ -94,8 +88,6 @@ function toolsEvent(evt)
       //SPHERE
       var geometry = new THREE.SphereGeometry(0.5, 50, 50);
 
-      // MATERIAL
-      //var material = material; 
       mesh = new THREE.Mesh(geometry, material);
       mesh.name = "sphere";
       scene.add(mesh); 
@@ -107,8 +99,6 @@ function toolsEvent(evt)
       // PYRAMID
       var geometry = new THREE.ConeGeometry(1.5, 2, 3);     
 
-      // MATERIAL
-      //var material = material; 
       mesh = new THREE.Mesh(geometry, material);
       mesh.name = "pyramide";
 

@@ -7,7 +7,6 @@ var light, directLight;
 var mesh;
 var sceneReady = false;
 var material;
-var materialsArray;
 var controls;
 var raycaster = new THREE.Raycaster();
 var mouse = new THREE.Vector2();
@@ -38,8 +37,6 @@ function main()
     scene.add(camera);
     scene.add(light);
     scene.add(directLight);
-
-    //materialsArray.push()
 
     material = new THREE.MeshNormalMaterial(); 
 
